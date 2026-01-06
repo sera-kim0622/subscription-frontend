@@ -8,6 +8,31 @@ function Login() {
 
   const [password, setPassword] = useState("");
 
+  const [errors, setErrors] = useState<{
+    email?: string;
+    password?: string;
+    global?: string;
+  }>({});
+
+  const handleSubmit = () => {
+    const newError: typeof errors = {};
+
+    if (!email.trim()) {
+      newError.email = "이메일을 입력해주세요.";
+    }
+
+    if (!password.trim()) {
+      newError.password = "비밀번호를 입력해주세요.";
+    }
+
+    if (Object.values(newError).length > 0) {
+      setErrors(newError);
+      return;
+    }
+
+    setErrors({});
+  };
+
   return (
     <>
       <AuthLayout
@@ -17,16 +42,24 @@ function Login() {
             아직 계정이 없으신가요? <a href="/signup">회원가입</a>
           </>
         }>
-        <AuthInput value={email} placeHolder="이메일" onChange={e => setEmail(e.target.value)} />
+        <AuthInput
+          value={email}
+          placeHolder="이메일"
+          onChange={e => setEmail(e.target.value)}
+          error={errors.email}
+        />
 
         <AuthInput
           value={password}
           type="password"
           placeHolder="비밀번호"
           onChange={e => setPassword(e.target.value)}
+          error={errors.password}
         />
 
-        <button className={styles.button}>로그인</button>
+        <button className={styles.button} onClick={handleSubmit}>
+          로그인
+        </button>
       </AuthLayout>
     </>
   );
