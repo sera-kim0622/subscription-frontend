@@ -47,7 +47,7 @@ function Signup() {
 
             <div className={styles.footer}>
               이미 회원가입을 하셨나요?
-              <a href="/signin">로그인</a>
+              <a href="/login">로그인</a>
             </div>
           </div>
         </div>
