@@ -1,4 +1,4 @@
-import styles from "./Signup.module.css";
+import styles from "./Login.module.css";
 import { useState } from "react";
 
 function Login() {
@@ -35,7 +35,7 @@ function Login() {
             <button className={styles.button}>로그인</button>
 
             <div className={styles.footer}>
-              이미 회원가입을 하셨나요?
+              아직 회원이 아니신가요?
               <a href="/signup">회원가입</a>
             </div>
           </div>
