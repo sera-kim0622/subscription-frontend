@@ -1,0 +1,107 @@
+.productsPage {
+  min-height: 100vh;
+  padding: 80px 24px;
+  background: #f7f7f8;
+  display: flex;
+  justify-content: center;
+}
+
+.productsHeader {
+  text-align: center;
+  margin-bottom: 48px;
+}
+
+.productsTitle {
+  font-size: 32px;
+  font-weight: 700;
+  color: #111;
+  margin-bottom: 8px;
+}
+
+.plansSection {
+  display: flex;
+  justify-content: center;
+}
+
+.plansGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+/* Card */
+.planCard {
+  background: #fff;
+  border-radius: 16px;
+  padding: 32px 24px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.planCard:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.1);
+}
+
+/* Card content */
+.planName {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.planPrice {
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 24px;
+  color: #111;
+}
+
+/* Features */
+.planFeatures {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 32px 0;
+  width: 100%;
+}
+
+.planFeatures li {
+  font-size: 14px;
+  color: #444;
+  padding: 8px 0;
+  text-align: center;
+  border-bottom: 1px solid #eee;
+}
+
+.planFeatures li:last-child {
+  border-bottom: none;
+}
+
+/* Button */
+.planButton {
+  margin-top: auto;
+  width: 100%;
+  padding: 14px 0;
+  border-radius: 10px;
+  border: none;
+  font-size: 15px;
+  font-weight: 600;
+  background: #111;
+  color: #fff;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.planButton:hover {
+  background: #333;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .plansGrid {
+    grid-template-columns: 1fr;
+  }
+}
