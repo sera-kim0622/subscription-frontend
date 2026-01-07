@@ -2,7 +2,6 @@ import { login } from "../../api/auth.api";
 import AuthInput from "../../components/auth/AuthInput/AuthInput";
 import AuthLayout from "../../components/auth/AuthLayout/AuthLayout";
 import { ErrorCode } from "../../constants/errorCode";
-import styles from "./Login.module.css";
 import { useState } from "react";
 
 function Login() {
@@ -55,6 +54,8 @@ function Login() {
     <>
       <AuthLayout
         title={"로그인"}
+        buttonText="로그인"
+        buttonOnClick={handleSubmit}
         footer={
           <>
             아직 계정이 없으신가요? <a href="/signup">회원가입</a>
@@ -74,10 +75,6 @@ function Login() {
           onChange={e => setPassword(e.target.value)}
           error={errors.password}
         />
-
-        <button className={styles.button} onClick={handleSubmit}>
-          로그인
-        </button>
       </AuthLayout>
     </>
   );

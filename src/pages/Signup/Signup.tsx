@@ -3,7 +3,6 @@ import { signup, UserRole } from "../../api/auth.api";
 import AuthInput from "../../components/auth/AuthInput/AuthInput";
 import AuthLayout from "../../components/auth/AuthLayout/AuthLayout";
 import { ErrorCode } from "../../constants/errorCode";
-import styles from "./Signup.module.css";
 import { useState } from "react";
 
 function Signup() {
@@ -69,6 +68,8 @@ function Signup() {
     <>
       <AuthLayout
         title={"회원가입"}
+        buttonText="회원가입"
+        buttonOnClick={handleSubmit}
         footer={
           <>
             이미 계정이 있으신가요? <a href="/login">로그인</a>
@@ -95,10 +96,6 @@ function Signup() {
           onChange={e => setRole(e.target.value)}
           error={errors.role}
         />
-
-        <button className={styles.button} onClick={handleSubmit}>
-          회원가입
-        </button>
       </AuthLayout>
     </>
   );
