@@ -1,107 +1,120 @@
-.productsPage {
+/* 전체 페이지 */
+.products-page {
   min-height: 100vh;
-  padding: 80px 24px;
-  background: #f7f7f8;
-  display: flex;
-  justify-content: center;
-}
-
-.productsHeader {
-  text-align: center;
-  margin-bottom: 48px;
-}
-
-.productsTitle {
-  font-size: 32px;
-  font-weight: 700;
-  color: #111;
-  margin-bottom: 8px;
-}
-
-.plansSection {
-  display: flex;
-  justify-content: center;
-}
-
-.plansGrid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
-}
-
-/* Card */
-.planCard {
-  background: #fff;
-  border-radius: 16px;
-  padding: 32px 24px;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+  padding: 48px 24px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  background-color: #f5f7fa;
 }
 
-.planCard:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.1);
+/* Header */
+.products-header {
+  text-align: center;
+  margin-bottom: 40px;
 }
 
-/* Card content */
-.planName {
-  font-size: 20px;
-  font-weight: 600;
+.products-title {
+  font-size: 36px;
+  font-weight: 700;
+  color: #1a1a1a;
   margin-bottom: 8px;
 }
 
-.planPrice {
-  font-size: 24px;
+.products-subtitle {
+  font-size: 16px;
+  color: #5a5a5a;
+}
+
+/* Products section */
+.products-section {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 24px;
+  width: 100%;
+  max-width: 960px;
+}
+
+/* Product card */
+.product-card {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 28px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.product-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+}
+
+/* Product info */
+.product-name {
+  font-size: 22px;
   font-weight: 700;
-  margin-bottom: 24px;
-  color: #111;
+  color: #202020;
+  margin-bottom: 6px;
+}
+
+.product-price {
+  font-size: 28px;
+  font-weight: 700;
+  color: #1f2937;
+  margin-bottom: 16px;
 }
 
 /* Features */
-.planFeatures {
+.product-features {
   list-style: none;
   padding: 0;
-  margin: 0 0 32px 0;
+  margin: 0 0 28px 0;
   width: 100%;
 }
 
-.planFeatures li {
+.product-features li {
   font-size: 14px;
-  color: #444;
+  color: #4b5563;
   padding: 8px 0;
   text-align: center;
-  border-bottom: 1px solid #eee;
+  border-bottom: 1px solid #e5e7eb;
 }
 
-.planFeatures li:last-child {
+.product-features li:last-child {
   border-bottom: none;
 }
 
 /* Button */
-.planButton {
-  margin-top: auto;
+.product-button {
   width: 100%;
-  padding: 14px 0;
-  border-radius: 10px;
-  border: none;
-  font-size: 15px;
+  padding: 14px;
+  font-size: 16px;
   font-weight: 600;
-  background: #111;
+  border: none;
+  border-radius: 10px;
+  background-color: #4f46e5;
   color: #fff;
   cursor: pointer;
   transition: background 0.2s ease;
 }
 
-.planButton:hover {
-  background: #333;
+.product-button:hover {
+  background-color: #4338ca;
 }
 
 /* Responsive */
-@media (max-width: 900px) {
-  .plansGrid {
+@media (max-width: 768px) {
+  .products-grid {
     grid-template-columns: 1fr;
   }
 }
