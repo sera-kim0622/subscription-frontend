@@ -1,3 +1,4 @@
+import { signup, UserRole } from "../../api/auth.api";
 import AuthInput from "../../components/auth/AuthInput/AuthInput";
 import AuthLayout from "../../components/auth/AuthLayout/AuthLayout";
 import styles from "./Signup.module.css";
@@ -8,16 +9,16 @@ function Signup() {
 
   const [password, setPassword] = useState("");
 
-  const [nickname, setNickname] = useState("");
+  const [role, setRole] = useState("");
 
   const [errors, setErrors] = useState<{
     email?: string;
     password?: string;
-    nickname?: string;
+    role?: string;
     global?: string;
   }>({});
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     const newError: typeof errors = {};
 
     if (!email.trim()) {
@@ -28,8 +29,8 @@ function Signup() {
       newError.password = "비밀번호를 입력해주세요.";
     }
 
-    if (!nickname.trim()) {
-      newError.nickname = "닉네임을 입력해주세요.";
+    if (!role.trim()) {
+      newError.role = "회원유형을 입력해주세요.";
     }
 
     if (Object.values(newError).length > 0) {
@@ -37,7 +38,16 @@ function Signup() {
       return;
     }
 
-    setErrors({});
+    try {
+      setErrors({});
+      const res = await signup({ email, password, role: UserRole.USER });
+
+      console.log(res);
+      alert("회원가입이 완료되었습니다.");
+    } catch (err: any) {
+      console.error(err);
+      return;
+    }
   };
 
   return (
@@ -65,10 +75,10 @@ function Signup() {
         />
 
         <AuthInput
-          value={nickname}
-          placeHolder="닉네임"
-          onChange={e => setNickname(e.target.value)}
-          error={errors.nickname}
+          value={role}
+          placeHolder="회원유형"
+          onChange={e => setRole(e.target.value)}
+          error={errors.role}
         />
 
         <button className={styles.button} onClick={handleSubmit}>
