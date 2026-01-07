@@ -1,5 +1,7 @@
+import { login } from "../../api/auth.api";
 import AuthInput from "../../components/auth/AuthInput/AuthInput";
 import AuthLayout from "../../components/auth/AuthLayout/AuthLayout";
+import { ErrorCode } from "../../constants/errorCode";
 import styles from "./Login.module.css";
 import { useState } from "react";
 
@@ -14,7 +16,7 @@ function Login() {
     global?: string;
   }>({});
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     const newError: typeof errors = {};
 
     if (!email.trim()) {
@@ -30,6 +32,22 @@ function Login() {
       return;
     }
 
+    try {
+      setErrors({});
+
+      await login({ email, password });
+    } catch (err: any) {
+      const data = err?.response?.data;
+
+      if (data?.type === "VALIDATION_ERROR") {
+        setErrors(data.errors);
+        return;
+      } else if (data?.code === ErrorCode.AUTH_INVALID_CREDENTIALS) {
+        setErrors({ email: data?.message });
+      } else {
+        setErrors({ global: data?.message });
+      }
+    }
     setErrors({});
   };
 
