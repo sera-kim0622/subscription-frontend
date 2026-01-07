@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import { signup, UserRole } from "../../api/auth.api";
 import AuthInput from "../../components/auth/AuthInput/AuthInput";
 import AuthLayout from "../../components/auth/AuthLayout/AuthLayout";
@@ -6,6 +7,7 @@ import styles from "./Signup.module.css";
 import { useState } from "react";
 
 function Signup() {
+  const navigate = useNavigate();
   const [email, setEmail] = useState("");
 
   const [password, setPassword] = useState("");
@@ -41,20 +43,25 @@ function Signup() {
 
     try {
       setErrors({});
-      const res = await signup({ email, password, role: UserRole.USER });
 
-      console.log(res);
+      await signup({ email, password, role: UserRole.USER });
+
       alert("회원가입이 완료되었습니다.");
+
+      navigate("/login");
     } catch (err: any) {
       const data = err?.response?.data;
 
       if (data?.type === "VALIDATION_ERROR") {
         setErrors(data.errors);
+        return;
       } else if (data?.code === ErrorCode.USER_EMAIL_DUPLICATED) {
         setErrors({ email: data?.message });
         return;
+      } else {
+        setErrors({ global: data?.message });
+        return;
       }
-      return;
     }
   };
 
