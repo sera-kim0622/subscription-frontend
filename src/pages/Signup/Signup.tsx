@@ -45,7 +45,11 @@ function Signup() {
       console.log(res);
       alert("회원가입이 완료되었습니다.");
     } catch (err: any) {
-      console.error(err);
+      const data = err?.response?.data;
+
+      if (data?.type === "VALIDATION_ERROR") {
+        setErrors(data.errors);
+      }
       return;
     }
   };
