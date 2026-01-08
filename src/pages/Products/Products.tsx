@@ -19,7 +19,7 @@ const Products = () => {
     getProducts({}).then(setProducts);
   }, [selectedType]);
 
-  console.log(products);
+  const filteredProducts = products.filter(product => product.type === selectedType);
 
   return (
     <div className={styles["products-page"]}>
@@ -45,7 +45,7 @@ const Products = () => {
       </div>
       <section className={styles["products-section"]}>
         <div className={styles["products-grid"]}>
-          {products.map(product => (
+          {filteredProducts.map(product => (
             <ProductCard
               key={product.id}
               product={product}
