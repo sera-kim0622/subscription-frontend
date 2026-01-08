@@ -24,6 +24,12 @@ export const mockProducts: Product[] = [
     id: 3,
     name: "Enterprise",
     type: "YEARLY",
-    price: 0,
+    price: 1000000,
+  },
+  {
+    id: 4,
+    name: "Enterprise",
+    type: "MONTHLY",
+    price: 100000,
   },
 ];

@@ -4,6 +4,10 @@ import { mockProducts, Product } from "./mockProducts";
 import styles from "./Products.module.css";
 
 const Products = () => {
+  const [selectedType, setSelectedType] = useState<"MONTHLY" | "YEARLY">("MONTHLY");
+
+  const filteredProduct = mockProducts.filter(product => product.type === selectedType);
+
   const [selectedProductId, setSelectedProductId] = useState<number | null>(null);
 
   const handleSelectProduct = (product: Product) => {
@@ -15,10 +19,26 @@ const Products = () => {
       <header className={styles["products-header"]}>
         <h1 className={styles["products-title"]}>요금제 선택</h1>
       </header>
+      <div className={styles["type-toggle"]}>
+        <button
+          className={`${styles["toggle-button"]} ${
+            selectedType === "MONTHLY" ? styles["active"] : ""
+          }`}
+          onClick={() => setSelectedType("MONTHLY")}>
+          월간
+        </button>
 
+        <button
+          className={`${styles["toggle-button"]} ${
+            selectedType === "YEARLY" ? styles["active"] : ""
+          }`}
+          onClick={() => setSelectedType("YEARLY")}>
+          연간
+        </button>
+      </div>
       <section className={styles["products-section"]}>
         <div className={styles["products-grid"]}>
-          {mockProducts.map(product => (
+          {filteredProduct.map(product => (
             <ProductCard
               key={product.id}
               product={product}
