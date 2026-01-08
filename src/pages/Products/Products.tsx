@@ -1,10 +1,13 @@
+import { useState } from "react";
 import ProductCard from "../../components/product/ProductCard";
 import { mockProducts, Product } from "./mockProducts";
 import styles from "./Products.module.css";
 
 const Products = () => {
+  const [selectedProductId, setSelectedProductId] = useState<number | null>(null);
+
   const handleSelectProduct = (product: Product) => {
-    console.log(product);
+    setSelectedProductId(product.id);
   };
 
   return (
@@ -16,7 +19,12 @@ const Products = () => {
       <section className={styles["products-section"]}>
         <div className={styles["products-grid"]}>
           {mockProducts.map(product => (
-            <ProductCard key={product.id} product={product} onSelect={handleSelectProduct} />
+            <ProductCard
+              key={product.id}
+              product={product}
+              onSelect={handleSelectProduct}
+              isSelected={product.id === selectedProductId}
+            />
           ))}
         </div>
       </section>
