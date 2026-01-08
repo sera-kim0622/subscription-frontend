@@ -12,7 +12,7 @@ const ProductCard = ({ product, onSelect }: ProductCardProps) => {
       <h2 className={styles["product-name"]}>{product.name}</h2>
       <p className={styles["product-price"]}>{product.price}</p>
       <p className={styles["product-type"]}>{product.type}</p>
-      <button className={styles["product-select"]} onClick={() => onSelect(product)}>
+      <button className={styles["product-button"]} onClick={() => onSelect(product)}>
         선택하기
       </button>
     </div>
