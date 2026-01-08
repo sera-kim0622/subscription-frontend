@@ -1,0 +1,10 @@
+.container {
+  display: flex;
+  min-height: 100vh;
+  background: #f5f7fa;
+}
+
+.content {
+  flex: 1;
+  padding: 32px;
+}
