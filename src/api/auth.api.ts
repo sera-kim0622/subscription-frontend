@@ -45,7 +45,6 @@ export const login = (data: LoginRequest) => {
 export const getProducts = async (params: GetProductsParams): Promise<Product[]> => {
   const res = await api.get("/products", {
     params: {
-      type: params.type ?? "MONTHLY",
       sortBy: params.sortBy ?? "price",
       order: params.order ?? "ASC",
     },
