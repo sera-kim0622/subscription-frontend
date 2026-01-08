@@ -1,18 +1,25 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ProductCard from "../../components/product/ProductCard";
-import { mockProducts, Product } from "./mockProducts";
 import styles from "./Products.module.css";
+import { getProducts } from "../../api/auth.api";
+import { Product } from "../../api/auth.api";
 
 const Products = () => {
   const [selectedType, setSelectedType] = useState<"MONTHLY" | "YEARLY">("MONTHLY");
-
-  const filteredProduct = mockProducts.filter(product => product.type === selectedType);
 
   const [selectedProductId, setSelectedProductId] = useState<number | null>(null);
 
   const handleSelectProduct = (product: Product) => {
     setSelectedProductId(product.id);
   };
+
+  const [products, setProducts] = useState<Product[]>([]);
+
+  useEffect(() => {
+    getProducts({}).then(setProducts);
+  }, [selectedType]);
+
+  console.log(products);
 
   return (
     <div className={styles["products-page"]}>
@@ -38,7 +45,7 @@ const Products = () => {
       </div>
       <section className={styles["products-section"]}>
         <div className={styles["products-grid"]}>
-          {filteredProduct.map(product => (
+          {products.map(product => (
             <ProductCard
               key={product.id}
               product={product}
