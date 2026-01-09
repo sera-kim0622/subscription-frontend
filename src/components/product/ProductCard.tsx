@@ -14,7 +14,7 @@ const ProductCard = ({ product, isSelected, onSelect, onPurchase }: ProductCardP
       className={`${styles["product-card"]} ${isSelected ? styles["selected"] : ""}`}
       onClick={() => onSelect}>
       <h2 className={styles["product-name"]}>{product.name}</h2>
-      <p className={styles["product-price"]}>{product.price}</p>
+      <p className={styles["product-price"]}>{product.price.toLocaleString()}</p>
       <p className={styles["product-type"]}>{product.type}</p>
       <button
         className={styles["product-button"]}
