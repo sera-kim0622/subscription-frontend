@@ -3,6 +3,7 @@ import Signup from "./pages/Signup/Signup";
 import Login from "./pages/Login/Login";
 import Products from "./pages/Products/Products";
 import AppLayout from "./components/layout/AppLayout";
+import Purchase from "./pages/Purchase/Purchase";
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
 
       <Route element={<AppLayout />}>
         <Route path="/products" element={<Products />} />
+        <Route path="/purchase" element={<Purchase />} />
         {/* 이 밑으로 사이드바가 필요한 페이지 넣기*/}
       </Route>
       <Route path="*" element={<Navigate to="/products" />} />

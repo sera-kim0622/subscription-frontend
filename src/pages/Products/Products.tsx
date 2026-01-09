@@ -3,14 +3,18 @@ import ProductCard from "../../components/product/ProductCard";
 import styles from "./Products.module.css";
 import { getProducts } from "../../api/product.api";
 import { Product } from "../../api/product.api";
+import { useNavigate } from "react-router-dom";
 
 const Products = () => {
   const [selectedType, setSelectedType] = useState<"MONTHLY" | "YEARLY">("MONTHLY");
 
   const [selectedProductId, setSelectedProductId] = useState<number | null>(null);
 
+  const navigate = useNavigate();
+
   const handleSelectProduct = (product: Product) => {
     setSelectedProductId(product.id);
+    navigate("/purchase", { state: product });
   };
 
   const [products, setProducts] = useState<Product[]>([]);
