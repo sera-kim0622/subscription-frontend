@@ -1,17 +1,38 @@
 import styles from "./Purchase.module.css";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { purchase } from "../../api/purchase.api";
-import { Product } from "../../api/product.api";
+import { getProducts, Product } from "../../api/product.api";
+import { useEffect, useState } from "react";
 
 const Purchase = () => {
-  const navigate = useNavigate();
-  const { state } = useLocation();
-  const product: Product = state?.product;
+  const { productId } = useParams<{ productId: string }>();
 
-  if (!product) {
-    navigate("/products");
-    return null;
-  }
+  console.log("렌더확인", productId);
+
+  const navigate = useNavigate();
+
+  const [product, setProduct] = useState<Product | null>(null);
+
+  useEffect(() => {
+    getProducts({}).then(products => {
+      const found = products.find(p => Number(p.id) === Number(productId));
+      console.log("found", found);
+      if (!found) {
+        navigate("/products", { replace: true });
+        return;
+      }
+
+      setProduct(prev => {
+        // ⭐ 이미 같은 상품이면 state 업데이트 안 함
+        if (prev && Number(prev.id) === Number(found.id)) {
+          return prev;
+        }
+        return found;
+      });
+    });
+  }, [product, navigate]);
+
+  if (!product) return null;
 
   const handlePurchase = async () => {
     try {
@@ -31,7 +52,7 @@ const Purchase = () => {
 
       <div className={styles["product-box"]}>
         <div className={styles["product-name"]}>{product.name}</div>
-        <div className={styles["product-price"]}>₩{product.price}</div>
+        <div className={styles["product-price"]}>₩{product.price.toLocaleString()}</div>
       </div>
 
       <div className={styles["payment-box"]}>
