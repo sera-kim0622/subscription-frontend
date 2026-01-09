@@ -1,3 +1,4 @@
+import { api } from "./axios";
 import { PeriodType, Product } from "./product.api";
 
 export interface PurchaseOrderResult {
@@ -43,6 +44,7 @@ export interface PortOneResult {
   /** 실패 사유 (실패한 경우만) */
   failReason?: string;
 }
+
 export interface PurchaseOutputDto {
   order: PurchaseOrderResult;
   payment?: PurchasePaymentOutput | null;
@@ -51,4 +53,12 @@ export interface PurchaseOutputDto {
   pgPaymentResult: PortOneResult;
 }
 
-export const purchase = async () => {};
+export interface PurchaseInputDto {
+  productId: number;
+  simulate: "success" | "fail";
+}
+
+export const purchase = async (data: PurchaseInputDto): Promise<PurchaseOutputDto> => {
+  const res = await api.post("/payments/purchase", data);
+  return res.data.result;
+};
