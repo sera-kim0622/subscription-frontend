@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import ProductCard from "../../components/product/ProductCard";
 import styles from "./Products.module.css";
-import { getProducts } from "../../api/auth.api";
-import { Product } from "../../api/auth.api";
+import { getProducts } from "../../api/product.api";
+import { Product } from "../../api/product.api";
 
 const Products = () => {
   const [selectedType, setSelectedType] = useState<"MONTHLY" | "YEARLY">("MONTHLY");
