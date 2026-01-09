@@ -13,7 +13,7 @@ function App() {
 
       <Route element={<AppLayout />}>
         <Route path="/products" element={<Products />} />
-        <Route path="/purchase" element={<Purchase />} />
+        <Route path="/purchase/:productId" element={<Purchase />} />
         {/* 이 밑으로 사이드바가 필요한 페이지 넣기*/}
       </Route>
       <Route path="*" element={<Navigate to="/products" />} />
