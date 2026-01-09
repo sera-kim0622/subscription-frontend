@@ -14,7 +14,10 @@ const Products = () => {
 
   const handleSelectProduct = (product: Product) => {
     setSelectedProductId(product.id);
-    navigate("/purchase", { state: product });
+  };
+
+  const handlePurchase = (product: Product) => {
+    navigate(`/purchase/${product.id}`);
   };
 
   const [products, setProducts] = useState<Product[]>([]);
@@ -53,8 +56,9 @@ const Products = () => {
             <ProductCard
               key={product.id}
               product={product}
-              onSelect={handleSelectProduct}
               isSelected={product.id === selectedProductId}
+              onSelect={handleSelectProduct}
+              onPurchase={handlePurchase}
             />
           ))}
         </div>
