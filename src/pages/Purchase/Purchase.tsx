@@ -78,8 +78,8 @@ const Purchase = () => {
 
       <PurchaseConfirmModal
         isOpen={isModalOpen}
-        planName="Pro 플랜"
-        priceLabel="₩25,000 / 월"
+        planName={product.name}
+        priceLabel={{ price: product.price, type: product.type }}
         onCancel={() => setIsModalOpen(false)}
         onConfirm={() => handlePurchase()}
       />

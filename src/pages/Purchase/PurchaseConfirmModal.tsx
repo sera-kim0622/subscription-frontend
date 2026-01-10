@@ -1,9 +1,10 @@
+import { PeriodType } from "../../api/product.api";
 import styles from "./PurchaseConfirmModal.module.css";
 
 interface PurchaseConfirmModalProps {
   isOpen: boolean;
   planName: string;
-  priceLabel: string;
+  priceLabel: { price: number; type: PeriodType };
   onConfirm: () => void;
   onCancel: () => void;
 }
@@ -27,7 +28,9 @@ export const PurchaseConfirmModal = ({
 
         <div className={styles["summary"]}>
           <span className={styles["product-name"]}>{planName}</span>
-          <span className={styles["product-price"]}>{priceLabel}</span>
+          <span className={styles["product-price"]}>
+            {priceLabel.price.toLocaleString()} / {priceLabel.type === "MONTHLY" ? "월" : "연"}
+          </span>
         </div>
 
         <div className={styles["footer"]}>

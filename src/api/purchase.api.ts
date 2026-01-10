@@ -13,9 +13,8 @@ export interface PurchasePaymentOutput {
   pgPaymentId: string;
   status: string;
   amount: number;
-  paymentDate: Date;
+  paymentDate: string;
   issuedSubscription: boolean;
-  createdAt: Date;
 }
 
 export interface Subscription {
@@ -50,7 +49,6 @@ export interface PurchaseOutputDto {
   payment: PurchasePaymentOutput;
   subscription?: Subscription;
   resultMessage: string;
-  pgPaymentResult: PortOneResult;
 }
 
 export interface PurchaseInputDto {
