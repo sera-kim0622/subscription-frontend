@@ -4,6 +4,7 @@ import Login from "./pages/Login/Login";
 import Products from "./pages/Products/Products";
 import AppLayout from "./components/layout/AppLayout";
 import Purchase from "./pages/Purchase/Purchase";
+import PurchaseResult from "./pages/Purchase/PurchaseResult";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
       <Route element={<AppLayout />}>
         <Route path="/products" element={<Products />} />
         <Route path="/purchase/:productId" element={<Purchase />} />
+        <Route path="/purchase/result" element={<PurchaseResult />} />
         {/* 이 밑으로 사이드바가 필요한 페이지 넣기*/}
       </Route>
       <Route path="*" element={<Navigate to="/products" />} />
