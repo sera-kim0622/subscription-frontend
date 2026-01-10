@@ -3,11 +3,12 @@ import { useNavigate, useParams } from "react-router-dom";
 import { purchase } from "../../api/purchase.api";
 import { getProducts, Product } from "../../api/product.api";
 import { useEffect, useState } from "react";
+import { PurchaseConfirmModal } from "./PurchaseConfirmModal";
 
 const Purchase = () => {
-  const { productId } = useParams<{ productId: string }>();
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
-  console.log("렌더확인", productId);
+  const { productId } = useParams<{ productId: string }>();
 
   const navigate = useNavigate();
 
@@ -16,7 +17,7 @@ const Purchase = () => {
   useEffect(() => {
     getProducts({}).then(products => {
       const found = products.find(p => Number(p.id) === Number(productId));
-      console.log("found", found);
+
       if (!found) {
         navigate("/products", { replace: true });
         return;
@@ -71,10 +72,18 @@ const Purchase = () => {
           </div>
         </div>
 
-        <button className={styles["purchase-button"]} onClick={handlePurchase}>
+        <button className={styles["purchase-button"]} onClick={() => setIsModalOpen(true)}>
           결제하기
         </button>
       </div>
+
+      <PurchaseConfirmModal
+        isOpen={isModalOpen}
+        planName="Pro 플랜"
+        priceLabel="₩25,000 / 월"
+        onCancel={() => setIsModalOpen(false)}
+        onConfirm={() => handlePurchase()}
+      />
     </div>
   );
 };
