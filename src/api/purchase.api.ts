@@ -22,7 +22,7 @@ export interface Subscription {
   user: { id: number };
   payment: { id: number };
   product: Product;
-  expiredAt: Date;
+  expiredAt: string;
 }
 
 export enum PAYMENT_STATUS {
@@ -47,8 +47,8 @@ export interface PortOneResult {
 
 export interface PurchaseOutputDto {
   order: PurchaseOrderResult;
-  payment?: PurchasePaymentOutput | null;
-  subscription?: Subscription | null;
+  payment: PurchasePaymentOutput;
+  subscription?: Subscription;
   resultMessage: string;
   pgPaymentResult: PortOneResult;
 }
@@ -60,5 +60,6 @@ export interface PurchaseInputDto {
 
 export const purchase = async (data: PurchaseInputDto): Promise<PurchaseOutputDto> => {
   const res = await api.post("/payments/purchase", data);
-  return res.data.result;
+
+  return res.data;
 };
