@@ -25,15 +25,20 @@ const PurchaseResult = () => {
         <div className={styles["section"]}>
           <strong>{result.order.name}</strong>
           <p>{result.payment.amount.toLocaleString()}</p>
-          <p>구독 만료일 : {result.subscription?.expiredAt}</p>
+          {result.payment.issuedSubscription && (
+            <p>구독 만료일 : {result.subscription?.expiredAt}</p>
+          )}
         </div>
 
         <hr className={styles["divider"]} />
 
-        <div className={styles["section"]}>
-          <p>결제 일시 : {result.payment.paymentDate}</p>
-          <p>주문 번호 : {result.payment.pgPaymentId}</p>
-        </div>
+        {result.payment.status === "SUCCESS" && (
+          <div className={styles["section"]}>
+            <p>결제 금액 : {result.payment.amount.toLocaleString()}원</p>
+            <p>결제 일시 : {result.payment.paymentDate}</p>
+            <p>주문 번호 : {result.payment.pgPaymentId}</p>
+          </div>
+        )}
 
         <p className={styles.hint}>결제 내역은 마이페이지 &gt; 주문 내역에서 확인할 수 있습니다.</p>
 
@@ -41,7 +46,11 @@ const PurchaseResult = () => {
           type="button"
           className={styles["confirm-button"]}
           onClick={() => navigate("/products")}>
-          확인
+          {result.payment.issuedSubscription
+            ? "확인"
+            : result.payment.status === "SUCCESS"
+            ? "다시 시도하기"
+            : "고객센터 문의"}
         </button>
       </div>
     </div>
