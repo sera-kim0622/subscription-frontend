@@ -35,14 +35,13 @@ const Purchase = () => {
 
   if (!product) return null;
 
+  // 실제 결제 호출하는 로직
   const handlePurchase = async () => {
     try {
-      await purchase({ productId: product.id, simulate: "success" });
+      const result = await purchase({ productId: product.id, simulate: "success" });
 
-      alert("구매가 완료되었습니다.");
-      navigate("./products");
+      navigate("/purchase/result", { state: { result } });
     } catch (err) {
-      console.log(err);
       alert("구매에 실패하였습니다.");
     }
   };

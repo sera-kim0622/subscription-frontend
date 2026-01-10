@@ -1,39 +1,21 @@
+import { useEffect } from "react";
+import { PurchaseOutputDto } from "../../api/purchase.api";
 import styles from "./PurchaseResult.module.css";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const PurchaseResult = () => {
   const navigate = useNavigate();
+  const location = useLocation();
 
-  const result = {
-    order: {
-      productId: 1,
-      name: "BASIC",
-      type: "MONTHLY",
-      price: 15000,
-    },
-    payment: {
-      id: 23,
-      pgPaymentId: "29a547c5-b63e-4741-909d-9f44220e6b6b",
-      status: "SUCCESS",
-      amount: 15000,
-      paymentDate: "2026-01-09T12:47:28.662Z",
-      issuedSubscription: true,
-      createdAt: "2026-01-09T03:47:28.670Z",
-    },
-    subscription: {
-      expiredAt: "2026-02-09T12:47:28.715Z",
-      updatedAt: "2026-01-09T03:47:28.717Z",
-      id: "7",
-      createdAt: "2026-01-09T03:47:28.717Z",
-      deletedAt: null,
-    },
-    resultMessage: "결제 완료 후 구독권 발급에 성공하였습니다.",
-    pgPaymentResult: {
-      pgPaymentId: "29a547c5-b63e-4741-909d-9f44220e6b6b",
-      status: "SUCCESS",
-      paidAt: "2026-01-09T12:47:28.662Z",
-    },
-  };
+  const state = location?.state as { result: PurchaseOutputDto };
+
+  useEffect(() => {
+    if (!state?.result) {
+      navigate("/products", { replace: true });
+    }
+  }, [state, location]);
+
+  const { result } = state;
 
   return (
     <div className={styles["page"]}>
@@ -43,7 +25,11 @@ const PurchaseResult = () => {
         <div className={styles["section"]}>
           <strong>{result.order.name}</strong>
           <p>{result.payment.amount}</p>
-          <p>구독 만료일 : {result.subscription.expiredAt}</p>
+          <p>
+            구독 만료일 :{" "}
+            {result.subscription?.expiredAt &&
+              new Date(result.subscription.expiredAt).toLocaleDateString()}
+          </p>
         </div>
 
         <hr className={styles["divider"]} />
