@@ -47,7 +47,7 @@ export interface PurchaseOutputDto {
 
 export interface PurchaseInputDto {
   productId: number;
-  simulate: "success" | "fail";
+  simulate: "success" | "fail" | "subscription_fail";
 }
 
 export const purchase = async (data: PurchaseInputDto): Promise<PurchaseOutputDto> => {
