@@ -52,7 +52,8 @@ const PurchaseResult = () => {
           <>
             <h2 className={styles.title}>⚠️ 결제는 완료되었습니다</h2>
             <p className={styles.description}>
-              결제는 성공했으나 구독권 발급에 실패했습니다. 고객센터에 문의해주세요.
+              결제는 성공했으나 구독권 발급에 실패했습니다. <br></br>아래 버튼을 눌러 구독권 발급
+              재시도를 진행해주세요.
             </p>
 
             <div className={styles.section}>
@@ -78,7 +79,7 @@ const PurchaseResult = () => {
           type="button"
           className={styles["confirm-button"]}
           onClick={() => navigate("/products")}>
-          확인
+          {PurchaseResultStatus.SUBSCRIPTION_FAILED ? "재시도" : "확인"}
         </button>
       </div>
     </div>
