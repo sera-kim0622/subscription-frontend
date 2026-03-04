@@ -1,3 +1,4 @@
+// 백엔드와 통신할 axios 설정
 import axios from "axios";
 
 export const api = axios.create({
