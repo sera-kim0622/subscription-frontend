@@ -42,9 +42,11 @@ function Login() {
         setErrors(data.errors);
         return;
       } else if (data?.code === ErrorCode.AUTH_INVALID_CREDENTIALS) {
-        setErrors({ email: data?.message });
+        setErrors({ global: data?.message });
+        return;
       } else {
         setErrors({ global: data?.message });
+        return;
       }
     }
     setErrors({});
@@ -73,7 +75,7 @@ function Login() {
           type="password"
           placeHolder="비밀번호"
           onChange={e => setPassword(e.target.value)}
-          error={errors.password}
+          error={errors.password ?? errors.global}
         />
       </AuthLayout>
     </>
