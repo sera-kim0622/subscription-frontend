@@ -79,7 +79,7 @@ const PurchaseResult = () => {
           type="button"
           className={styles["confirm-button"]}
           onClick={() => navigate("/products")}>
-          {PurchaseResultStatus.SUBSCRIPTION_FAILED ? "재시도" : "확인"}
+          {result.payment.status === PurchaseResultStatus.PAYMENT_FAILED ? "재시도" : "확인"}
         </button>
       </div>
     </div>

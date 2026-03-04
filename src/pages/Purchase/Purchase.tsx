@@ -38,7 +38,7 @@ const Purchase = () => {
   // 실제 결제 호출하는 로직
   const handlePurchase = async () => {
     try {
-      const result = await purchase({ productId: product.id, simulate: "fail" });
+      const result = await purchase({ productId: product.id, simulate: "subscription_fail" });
 
       navigate("/purchase/result", { state: { result } });
     } catch (err) {
