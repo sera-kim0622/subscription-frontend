@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import { login } from "../../api/auth.api";
 import AuthInput from "../../components/auth/AuthInput/AuthInput";
 import AuthLayout from "../../components/auth/AuthLayout/AuthLayout";
@@ -5,6 +6,8 @@ import { ErrorCode } from "../../constants/errorCode";
 import { useState } from "react";
 
 function Login() {
+  const navigate = useNavigate();
+
   const [email, setEmail] = useState("");
 
   const [password, setPassword] = useState("");
@@ -35,6 +38,7 @@ function Login() {
       setErrors({});
 
       await login({ email, password });
+      navigate("/products", { replace: true });
     } catch (err: any) {
       const data = err?.response?.data;
 
