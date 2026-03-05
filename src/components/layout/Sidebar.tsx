@@ -45,12 +45,6 @@ const Sidebar = () => {
                 className={({ isActive }) => (isActive ? style.active : style.link)}>
                 내 정보
               </NavLink>
-
-              <NavLink
-                to="/order"
-                className={({ isActive }) => (isActive ? style.active : style.link)}>
-                주문 내역
-              </NavLink>
             </>
           )}
         </nav>
