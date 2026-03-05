@@ -41,17 +41,24 @@ const Profile = () => {
 
       {/* Account Information */}
       <section className={styles.card}>
-        <h2 className={styles.sectionTitle}>Account Information</h2>
+        <h2 className={styles.sectionTitle}>계정 정보</h2>
 
         <div className={styles.infoRow}>
           <span>ID:</span>
           <span>{user.email}</span>
         </div>
+
+        <div className={styles.infoRow}>
+          <span>PLAN:</span>
+          <span>
+            {user.subscriptions.find(p => p.id === user.activeSubscriptionId)?.productName}
+          </span>
+        </div>
       </section>
 
       {/* Current Subscription */}
       <section className={styles.card}>
-        <h2 className={styles.sectionTitle}>현재 구독 상품</h2>
+        <h2 className={styles.sectionTitle}>구독 내역</h2>
 
         <table className={styles.table}>
           <thead>

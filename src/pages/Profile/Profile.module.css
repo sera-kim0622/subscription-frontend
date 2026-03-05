@@ -26,9 +26,13 @@
 
 .infoRow {
   display: flex;
-  justify-content: space-between;
+  gap: 8px;
   margin-bottom: 10px;
   font-size: 14px;
+}
+
+.infoRow span:first-child {
+  font-weight: 600;
 }
 
 .table {
