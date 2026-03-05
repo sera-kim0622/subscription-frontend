@@ -9,10 +9,9 @@ import PurchaseResult from "./pages/Purchase/PurchaseResult";
 function App() {
   return (
     <Routes>
-      <Route path="/signup" element={<Signup />} />
-      <Route path="/login" element={<Login />} />
-
       <Route element={<AppLayout />}>
+        <Route path="/signup" element={<Signup />} />
+        <Route path="/login" element={<Login />} />
         <Route path="/products" element={<Products />} />
         <Route path="/purchase/:productId" element={<Purchase />} />
         <Route path="/purchase/result" element={<PurchaseResult />} />
