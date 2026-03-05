@@ -18,7 +18,8 @@ function Login() {
     global?: string;
   }>({});
 
-  const handleSubmit = async () => {
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
     const newError: typeof errors = {};
 
     if (!email.trim()) {

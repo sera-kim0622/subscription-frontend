@@ -20,7 +20,8 @@ function Signup() {
     global?: string;
   }>({});
 
-  const handleSubmit = async () => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
     const newError: typeof errors = {};
 
     if (!email.trim()) {
