@@ -1,7 +1,8 @@
 import { NavLink, useLocation } from "react-router-dom";
 import style from "./Sidebar.module.css";
 import { useEffect, useState } from "react";
-import { logout, profile } from "../../api/auth.api";
+import { logout } from "../../api/auth.api";
+import { profile } from "../../api/profile.api";
 
 const Sidebar = () => {
   const location = useLocation();

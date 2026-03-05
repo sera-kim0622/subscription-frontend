@@ -22,10 +22,6 @@ export const login = (data: LoginRequest) => {
   return api.post("/users/login", data);
 };
 
-export const profile = () => {
-  return api.get("/users/profile");
-};
-
 export const logout = () => {
   return api.post("/users/logout");
 };
