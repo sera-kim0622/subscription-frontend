@@ -1,9 +1,11 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import style from "./Sidebar.module.css";
 import { useEffect, useState } from "react";
 import { logout, profile } from "../../api/auth.api";
 
 const Sidebar = () => {
+  const location = useLocation();
+
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
 
   useEffect(() => {
@@ -17,7 +19,7 @@ const Sidebar = () => {
     };
 
     checkLogin();
-  }, []);
+  }, [location]);
 
   const handleLogout = async () => {
     await logout();
