@@ -8,11 +8,18 @@ export interface Payment {
   issuedSubscription: boolean;
 }
 
+export interface Subscription {
+  id: string;
+  productName: string;
+  expiredAt: string;
+  price: number;
+}
+
 export interface UserProfile {
   id: string;
   email: string;
   role: string;
-  subscriptions: any[];
+  subscriptions: Subscription[];
   payments: Payment[];
   activeSubscriptionId: string | null;
 }

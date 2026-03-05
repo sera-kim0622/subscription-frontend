@@ -39,39 +39,51 @@ const Profile = () => {
     <div className={styles.container}>
       <h1 className={styles.title}>Profile</h1>
 
-      <section className={styles.section}>
+      {/* Account Information */}
+      <section className={styles.card}>
         <h2 className={styles.sectionTitle}>Account Information</h2>
 
         <div className={styles.infoRow}>
-          <span>Email:</span>
+          <span>ID:</span>
           <span>{user.email}</span>
-        </div>
-
-        <div className={styles.infoRow}>
-          <span>Role:</span>
-          <span>{user.role}</span>
-        </div>
-
-        <div className={styles.infoRow}>
-          <span>Current Plan:</span>
-          <span>
-            {user.activeSubscriptionId
-              ? `Subscription #${user.activeSubscriptionId}`
-              : "No Active Plan"}
-          </span>
         </div>
       </section>
 
-      {/* Recent Payments */}
-      <section className={styles.section}>
-        <h2 className={styles.sectionTitle}>Recent Payments</h2>
+      {/* Current Subscription */}
+      <section className={styles.card}>
+        <h2 className={styles.sectionTitle}>현재 구독 상품</h2>
 
         <table className={styles.table}>
           <thead>
             <tr>
-              <th>Date</th>
-              <th>Amount</th>
-              <th>Status</th>
+              <th>상품명</th>
+              <th>가격</th>
+              <th>만료일</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            {user.subscriptions.map(sub => (
+              <tr key={sub.id}>
+                <td>{sub.productName}</td>
+                <td>₩{sub.price.toLocaleString()}</td>
+                <td>{new Date(sub.expiredAt).toLocaleDateString()}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </section>
+
+      {/* Payments */}
+      <section className={styles.card}>
+        <h2 className={styles.sectionTitle}>결제 내역</h2>
+
+        <table className={styles.table}>
+          <thead>
+            <tr>
+              <th>결제 일자</th>
+              <th>결제 금액</th>
+              <th>결제 결과</th>
             </tr>
           </thead>
 
